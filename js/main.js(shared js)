@@ -4,13 +4,10 @@
 
 // Configuration
 const CONFIG = {
-    SHEETDB_URL: 'https://sheetdb.io/api/v1/YOUR_API_KEY_HERE', // REPLACE WITH YOUR ACTUAL URL
-    ADMIN_PASSWORD: 'cute123', // CHANGE THIS!
-    SESSION_TIMEOUT: 30 * 60 * 1000, // 30 minutes
-    STORAGE_KEYS: {
-        AUTH: 'hamisa_auth',
-        THEME: 'hamisa_theme'
-    }
+    SHEETDB_URL: 'https://sheetdb.io/api/v1/tv79omjmeb41g',
+    ADMIN_PASSWORD: 'cute123',
+    SESSION_TIMEOUT: 30 * 60 * 1000
+};
 };
 
 // Toast notifications
