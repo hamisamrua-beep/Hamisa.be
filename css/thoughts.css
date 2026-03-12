@@ -1,0 +1,518 @@
+/* ===== THOUGHTS PAGE SPECIFIC STYLES ===== */
+
+/* Stats Banner */
+.stats-banner {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    padding: 1.5rem 2rem;
+    background: rgba(255, 245, 235, 0.8);
+    backdrop-filter: blur(5px);
+    border: 2px solid var(--border-color);
+    border-radius: 100px 20px 100px 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.stat-group {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+
+.stat-number {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    text-transform: lowercase;
+}
+
+.stat-divider {
+    color: var(--border-color);
+    font-size: 1.5rem;
+}
+
+/* Two Column Layout */
+.thoughts-layout {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+/* Left Column - Post Form */
+.post-column {
+    background: rgba(255, 245, 235, 0.8);
+    backdrop-filter: blur(5px);
+    border: 2px solid var(--border-color);
+    border-radius: 80px 20px 80px 20px;
+    padding: 2rem;
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+}
+
+.post-column h2 {
+    font-size: 2.2rem;
+    margin-bottom: 0.3rem;
+    color: var(--text-secondary);
+}
+
+.column-subtitle {
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+}
+
+/* Thought Form */
+.thought-form {
+    margin: 1.5rem 0;
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.form-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.8rem 1.2rem;
+    background: rgba(255, 255, 255, 0.7);
+    border: 2px solid var(--border-color);
+    border-radius: 40px;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--border-dark);
+    background: white;
+}
+
+.anonymous-check {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.anonymous-check input {
+    width: auto;
+    cursor: pointer;
+}
+
+.form-textarea {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.7);
+    border: 2px solid var(--border-color);
+    border-radius: 30px;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    min-height: 120px;
+    resize: vertical;
+    margin-bottom: 1.5rem;
+    transition: all 0.2s;
+}
+
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--border-dark);
+    background: white;
+}
+
+/* Captcha */
+.captcha-box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(255, 235, 220, 0.5);
+    border-radius: 60px;
+    flex-wrap: wrap;
+}
+
+.captcha-box span {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.captcha-input {
+    width: 80px;
+    padding: 0.5rem;
+    border: 2px solid var(--border-color);
+    border-radius: 40px;
+    background: rgba(255, 255, 255, 0.7);
+    text-align: center;
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background: var(--accent-dark);
+    border: 2px solid var(--border-dark);
+    border-radius: 60px;
+    font-family: var(--font-cute);
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 5px 0 var(--border-dark);
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 0 var(--border-dark);
+}
+
+.submit-btn:active {
+    transform: translateY(5px);
+    box-shadow: 0 0px 0 var(--border-dark);
+}
+
+/* Cozy Note */
+.cozy-note {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(255, 235, 220, 0.3);
+    border-radius: 60px 10px 60px 10px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* Right Column - Feed */
+.feed-column {
+    background: rgba(255, 245, 235, 0.8);
+    backdrop-filter: blur(5px);
+    border: 2px solid var(--border-color);
+    border-radius: 20px 80px 20px 80px;
+    padding: 2rem;
+}
+
+.feed-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px dashed var(--border-color);
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.feed-header h3 {
+    font-size: 1.8rem;
+    color: var(--text-secondary);
+}
+
+.sort-select {
+    padding: 0.5rem 1.5rem;
+    background: rgba(255, 255, 255, 0.7);
+    border: 2px solid var(--border-color);
+    border-radius: 40px;
+    font-family: var(--font-main);
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+/* Thoughts Feed */
+.thoughts-feed {
+    max-height: 700px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+.thoughts-feed::-webkit-scrollbar {
+    width: 6px;
+}
+
+.thoughts-feed::-webkit-scrollbar-track {
+    background: var(--border-color);
+    border-radius: 10px;
+}
+
+.thoughts-feed::-webkit-scrollbar-thumb {
+    background: var(--text-muted);
+    border-radius: 10px;
+}
+
+/* Thought Card */
+.thought-card {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid var(--border-color);
+    border-radius: 50px 10px 50px 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.2rem;
+    transition: all 0.3s;
+    position: relative;
+    animation: cardSlide 0.3s ease;
+}
+
+@keyframes cardSlide {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.thought-card:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateX(5px);
+    border-color: var(--border-dark);
+}
+
+.thought-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px dotted var(--border-color);
+}
+
+.thought-name {
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+.thought-date {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    background: rgba(255, 235, 220, 0.5);
+    padding: 0.2rem 0.8rem;
+    border-radius: 30px;
+}
+
+.thought-content {
+    color: var(--text-primary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+/* Thought Footer */
+.thought-footer {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.like-section {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: rgba(255, 235, 220, 0.5);
+    padding: 0.2rem 0.8rem;
+    border-radius: 40px;
+}
+
+.like-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: all 0.2s;
+    padding: 0.2rem;
+}
+
+.like-btn:hover {
+    transform: scale(1.2);
+    color: #ff8a8a;
+}
+
+.like-btn.liked {
+    color: #ff8a8a;
+}
+
+.reply-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0.2rem 0.8rem;
+    border-radius: 40px;
+    transition: all 0.2s;
+}
+
+.reply-btn:hover {
+    background: var(--accent);
+    color: var(--text-secondary);
+}
+
+.sneaky-badge {
+    background: rgba(210, 190, 170, 0.2);
+    padding: 0.2rem 0.8rem;
+    border-radius: 30px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-left: auto;
+}
+
+/* Reply Form */
+.reply-form {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--border-color);
+    display: none;
+}
+
+.reply-form.show {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.reply-input {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid var(--border-color);
+    border-radius: 40px;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-main);
+}
+
+.reply-input:focus {
+    outline: none;
+    border-color: var(--border-dark);
+}
+
+.reply-submit {
+    background: var(--accent);
+    border: 1px solid var(--border-dark);
+    padding: 0.4rem 1.2rem;
+    border-radius: 40px;
+    cursor: pointer;
+    color: var(--text-primary);
+    transition: all 0.2s;
+}
+
+.reply-submit:hover {
+    background: var(--accent-dark);
+}
+
+/* Replies */
+.replies {
+    margin-top: 1rem;
+    margin-left: 1.5rem;
+    padding-left: 1rem;
+    border-left: 2px dotted var(--border-color);
+}
+
+.reply-card {
+    background: rgba(255, 250, 240, 0.5);
+    border-radius: 30px 5px 30px 5px;
+    padding: 0.8rem;
+    margin-bottom: 0.8rem;
+    font-size: 0.9rem;
+}
+
+.reply-name {
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-right: 0.5rem;
+}
+
+.reply-time {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+
+/* Loading State */
+.loading-thoughts {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-muted);
+}
+
+.loading-flourish {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1rem;
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-muted);
+}
+
+.empty-flourish {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .thoughts-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .post-column {
+        position: static;
+    }
+    
+    .stats-banner {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .anonymous-check {
+        justify-content: center;
+    }
+    
+    .captcha-box {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .feed-header {
+        flex-direction: column;
+        text-align: center;
+    }
+}
