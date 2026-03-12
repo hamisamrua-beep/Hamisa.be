@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hamisa · film journals</title>
+    
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
+    <!-- SEO -->
+    <meta name="description" content="A cozy corner for film lovers to share thoughts and discoveries">
+    <meta name="keywords" content="films, reviews, community, thoughts, cinema">
+    <meta name="author" content="hamisa">
+    
+    <!-- Open Graph (for social sharing) -->
+    <meta property="og:title" content="hamisa · film journals">
+    <meta property="og:description" content="A cozy corner for film lovers">
+    <meta property="og:type" content="website">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&family=Comfortaa:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/landing.css">
+</head>
+<body>
+    <!-- Loading Animation -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <span class="loading-flourish">☾</span>
+            <p>gathering thoughts...</p>
+        </div>
+    </div>
+
+    <!-- Main Landing Content -->
+    <div class="landing-container" id="landingContainer">
+        <div class="floating-elements">
+            <div class="float-circle"></div>
+            <div class="float-circle-small"></div>
+            <div class="float-star">✦</div>
+            <div class="float-star" style="top: 30%; right: 10%;">☾</div>
+        </div>
+
+        <main class="landing-main">
+            <div class="landing-card">
+                <h1 class="landing-title">
+                    <span class="title-line">hamisa</span>
+                    <span class="title-sub">film journals</span>
+                </h1>
+                
+                <p class="landing-description">
+                    a cozy corner for film lovers to share thoughts, 
+                    discoveries, and the moments that stay with us.
+                </p>
+
+                <div class="landing-stats" id="landingStats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="totalFilmsStat">0</span>
+                        <span class="stat-label">films</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="totalThoughtsStat">0</span>
+                        <span class="stat-label">thoughts</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="activeNowStat">0</span>
+                        <span class="stat-label">here now</span>
+                    </div>
+                </div>
+
+                <div class="landing-buttons">
+                    <a href="reviews.html" class="landing-btn primary">✨ enter the thinky place</a>
+                    <a href="thoughts.html" class="landing-btn secondary">💭 join the conversation</a>
+                </div>
+
+                <div class="landing-quote">
+                    "sometimes you just gotta say what you're thinking — 
+                    even if it's silly, even if it's small"
+                    <span class="quote-author">— a very wise potato</span>
+                </div>
+            </div>
+
+            <!-- Decorative Elements -->
+            <div class="decor-left">☾</div>
+            <div class="decor-right">✦</div>
+        </main>
+
+        <footer class="landing-footer">
+            <p>🧦 be kind · be cozy · be you 🧦</p>
+            <p class="footer-small">every thought is like a little hug for the internet</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/landing.js"></script>
+</body>
+</html>
