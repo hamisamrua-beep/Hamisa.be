@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hamisa · admin</title>
+    
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&family=Comfortaa:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <!-- Admin Panel - Protected by Session -->
+    <div class="admin-container" id="adminContainer">
+        <header class="admin-header">
+            <h1>admin dashboard</h1>
+            <button class="logout-btn" id="logoutBtn">logout</button>
+        </header>
+
+        <!-- Stats Overview -->
+        <div class="admin-stats" id="adminStats">
+            <!-- Stats loaded by JavaScript -->
+        </div>
+
+        <!-- Tabs -->
+        <div class="admin-tabs">
+            <button class="tab-btn active" data-tab="comments">moderate comments</button>
+            <button class="tab-btn" data-tab="films">manage films</button>
+            <button class="tab-btn" data-tab="security">security</button>
+        </div>
+
+        <!-- Comments Moderation Tab -->
+        <div class="tab-pane active" id="commentsTab">
+            <h2>pending comments</h2>
+            <div class="comments-queue" id="pendingComments"></div>
+            
+            <h2 style="margin-top: 2rem;">approved comments</h2>
+            <div class="comments-queue" id="approvedComments"></div>
+        </div>
+
+        <!-- Films Management Tab -->
+        <div class="tab-pane" id="filmsTab">
+            <form id="filmForm" class="admin-form">
+                <h3>add / edit film</h3>
+                <input type="text" id="filmTitle" placeholder="title *" required>
+                <input type="text" id="filmDirector" placeholder="director">
+                <input type="text" id="filmYear" placeholder="year">
+                <textarea id="filmReview" placeholder="review *" required></textarea>
+                <button type="submit" class="admin-btn">save film</button>
+            </form>
+            
+            <div class="films-list" id="filmsList"></div>
+        </div>
+
+        <!-- Security Tab -->
+        <div class="tab-pane" id="securityTab">
+            <h2>security settings</h2>
+            
+            <div class="security-section">
+                <h3>change password</h3>
+                <input type="password" id="newPassword" placeholder="new password">
+                <input type="password" id="confirmPassword" placeholder="confirm password">
+                <button class="admin-btn" id="changePasswordBtn">update password</button>
+            </div>
+            
+            <div class="security-section">
+                <h3>session management</h3>
+                <p>session timeout: 30 minutes</p>
+                <button class="admin-btn" id="logoutAllBtn">logout all devices</button>
+            </div>
+            
+            <div class="security-section">
+                <h3>backup data</h3>
+                <button class="admin-btn" id="backupBtn">download backup</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
