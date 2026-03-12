@@ -5,100 +5,156 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>hamisa · film journals</title>
     
-    <!-- Security Headers -->
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    
-    <!-- SEO -->
-    <meta name="description" content="A cozy corner for film lovers to share thoughts and discoveries">
-    <meta name="keywords" content="films, reviews, community, thoughts, cinema">
-    <meta name="author" content="hamisa">
-    
-    <!-- Open Graph (for social sharing) -->
-    <meta property="og:title" content="hamisa · film journals">
-    <meta property="og:description" content="A cozy corner for film lovers">
-    <meta property="og:type" content="website">
-    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&family=Comfortaa:wght@300;400;500&display=swap" rel="stylesheet">
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/landing.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Loading Animation -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loading-content">
-            <span class="loading-flourish">☾</span>
-            <p>gathering thoughts...</p>
+    <!-- Landing Section (Animated) -->
+    <div id="landing-section" class="section">
+        <div class="landing-content">
+            <div class="canvas" id="landingCanvas">
+                <span class="hamisa">hamisa</span>
+            </div>
+            <div class="landing-footer">
+                <span>✦ film journals ✦</span>
+            </div>
         </div>
     </div>
 
-    <!-- Main Landing Content -->
-    <div class="landing-container" id="landingContainer">
-        <div class="floating-elements">
-            <div class="float-circle"></div>
-            <div class="float-circle-small"></div>
-            <div class="float-star">✦</div>
-            <div class="float-star" style="top: 30%; right: 10%;">☾</div>
-        </div>
-
-        <main class="landing-main">
-            <div class="landing-card">
-                <h1 class="landing-title">
-                    <span class="title-line">hamisa</span>
-                    <span class="title-sub">film journals</span>
-                </h1>
-                
-                <p class="landing-description">
-                    a cozy corner for film lovers to share thoughts, 
-                    discoveries, and the moments that stay with us.
-                </p>
-
-                <div class="landing-stats" id="landingStats">
-                    <div class="stat-item">
-                        <span class="stat-number" id="totalFilmsStat">0</span>
-                        <span class="stat-label">films</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" id="totalThoughtsStat">0</span>
-                        <span class="stat-label">thoughts</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" id="activeNowStat">0</span>
-                        <span class="stat-label">here now</span>
-                    </div>
-                </div>
-
-                <div class="landing-buttons">
-                    <a href="reviews.html" class="landing-btn primary">✨ enter the thinky place</a>
-                    <a href="thoughts.html" class="landing-btn secondary">💭 join the conversation</a>
-                </div>
-
-                <div class="landing-quote">
-                    "sometimes you just gotta say what you're thinking — 
-                    even if it's silly, even if it's small"
-                    <span class="quote-author">— a very wise potato</span>
+    <!-- Reviews Section (Public) -->
+    <div id="reviews-section" class="section">
+        <div class="reviews-container">
+            <div class="review-header">
+                <h1>film reviews</h1>
+                <div class="nav-links">
+                    <button class="admin-login-btn" id="open-admin-btn">admin ✦</button>
                 </div>
             </div>
 
-            <!-- Decorative Elements -->
-            <div class="decor-left">☾</div>
-            <div class="decor-right">✦</div>
-        </main>
+            <!-- Search and Filter -->
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="🔍 search by title, director, or year...">
+                <select id="yearFilter">
+                    <option value="all">all years</option>
+                    <option value="2025">2025</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                </select>
+                <select id="sortFilter">
+                    <option value="newest">newest first</option>
+                    <option value="oldest">oldest first</option>
+                    <option value="a-z">a-z</option>
+                    <option value="z-a">z-a</option>
+                </select>
+            </div>
 
-        <footer class="landing-footer">
-            <p>🧦 be kind · be cozy · be you 🧦</p>
-            <p class="footer-small">every thought is like a little hug for the internet</p>
-        </footer>
+            <!-- Review Grid -->
+            <div id="reviewGrid" class="review-grid"></div>
+            <div id="counterNote" class="counter-note"></div>
+
+            <!-- Signature -->
+            <div class="signature">
+                <span>with love, Freya & Amy</span>
+            </div>
+        </div>
     </div>
 
-    <!-- JavaScript -->
-    <script src="js/main.js"></script>
-    <script src="js/landing.js"></script>
+    <!-- Admin Login Modal -->
+    <div id="loginModal" class="modal-overlay">
+        <div class="modal-content login-modal">
+            <span class="modal-flourish">☾</span>
+            <h2 class="login-title">admin</h2>
+            <div class="form-group">
+                <input type="password" id="passwordInput" placeholder="✦ password ✦">
+            </div>
+            <div class="login-actions">
+                <button class="btn" id="loginSubmitBtn">enter</button>
+                <button class="btn" id="loginCancelBtn">cancel</button>
+            </div>
+            <div id="loginError" class="login-error"></div>
+        </div>
+    </div>
+
+    <!-- Admin Section (Hidden by default) -->
+    <div id="admin-section">
+        <div class="reviews-container">
+            <div class="review-header">
+                <h1>admin panel</h1>
+                <div class="nav-links">
+                    <button class="admin-login-btn" id="back-to-reviews-btn">← back to reviews</button>
+                </div>
+            </div>
+
+            <!-- Stats Dashboard -->
+            <div class="stats-dashboard" id="statsDashboard"></div>
+
+            <div class="admin-container">
+                <div id="adminStatus" class="status-message"></div>
+                
+                <form id="showForm">
+                    <div class="form-group">
+                        <label for="title">title *</label>
+                        <input type="text" id="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="director">director</label>
+                        <input type="text" id="director">
+                    </div>
+                    <div class="form-group">
+                        <label for="year">year</label>
+                        <input type="text" id="year" placeholder="e.g., 2024">
+                    </div>
+                    <div class="form-group">
+                        <label for="reviewText">review *</label>
+                        <textarea id="reviewText" required></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn" id="saveBtn">➕ add show</button>
+                        <button type="button" class="btn" id="clearBtn">clear</button>
+                    </div>
+                </form>
+
+                <!-- Import/Export Section -->
+                <div class="import-export">
+                    <h3>data management</h3>
+                    <div class="import-export-buttons">
+                        <button class="btn" id="exportBtn">📥 export</button>
+                        <button class="btn" id="importBtn">📤 import</button>
+                    </div>
+                </div>
+
+                <div class="shows-list">
+                    <h3>current shows (<span id="showCount">0</span>)</h3>
+                    <div id="showsContainer"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Review Modal -->
+    <div id="reviewModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-flourish">☾</span>
+            <div id="modalTitle" class="modal-title"></div>
+            <div id="modalReview" class="modal-review"></div>
+            <div class="modal-actions">
+                <button class="btn" id="closeModalBtn">close</button>
+                <button class="btn" id="shareModalBtn">share</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">↑</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
 </body>
 </html>
