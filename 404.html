@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>oops! page not found</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .error-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .error-card {
+            max-width: 500px;
+            background: rgba(255, 245, 235, 0.9);
+            border: 3px solid var(--border-color);
+            border-radius: 120px 30px 120px 30px;
+            padding: 4rem 2rem;
+        }
+        
+        .error-number {
+            font-size: 8rem;
+            font-family: var(--font-cute);
+            color: var(--text-muted);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+        
+        .error-message {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+        
+        .error-text {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+        
+        .home-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent-dark);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 60px;
+            border: 2px solid var(--border-dark);
+            transition: all 0.3s;
+        }
+        
+        .home-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-card">
+            <div class="error-number">404</div>
+            <h1 class="error-message">page not found</h1>
+            <p class="error-text">looks like this thought wandered off somewhere...</p>
+            <a href="index.html" class="home-btn">✨ go back home</a>
+        </div>
+    </div>
+</body>
+</html>
