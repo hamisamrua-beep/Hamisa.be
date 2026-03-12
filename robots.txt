@@ -1,0 +1,11 @@
+# Allow all search engines
+User-agent: *
+Allow: /
+
+# Disallow admin pages
+Disallow: /admin.html
+Disallow: /js/
+Disallow: /css/
+
+# Sitemap location
+Sitemap: https://yourdomain.com/sitemap.xml
