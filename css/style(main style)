@@ -1,0 +1,313 @@
+/* ===== RESET & BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-primary: #fff9f0;
+    --bg-secondary: #fff5e8;
+    --bg-card: #fff0e0;
+    --text-primary: #5a4e42;
+    --text-secondary: #b87c5a;
+    --text-muted: #d9aa8b;
+    --border-color: #ffd9b0;
+    --border-dark: #e6a57e;
+    --accent: #ffe2cc;
+    --accent-dark: #ffc9a2;
+    --shadow: rgba(210, 190, 170, 0.3);
+    --success: #d9e6d2;
+    --error: #f3dddd;
+    --font-main: 'Quicksand', sans-serif;
+    --font-cute: 'Comfortaa', cursive;
+}
+
+body {
+    background-color: var(--bg-primary);
+    font-family: var(--font-main);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    background-image: 
+        radial-gradient(circle at 20px 20px, #fce9d8 2px, transparent 2px),
+        radial-gradient(circle at 50px 50px, #f5e6d3 1px, transparent 2px);
+    background-size: 60px 60px, 100px 100px;
+    position: relative;
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-cute);
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+
+/* ===== NAVIGATION ===== */
+.main-nav {
+    background: rgba(255, 245, 235, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--border-color);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-family: var(--font-cute);
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.nav-logo:hover {
+    transform: scale(1.05);
+    color: var(--border-dark);
+}
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.nav-link {
+    padding: 0.5rem 1.2rem;
+    border-radius: 40px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: all 0.2s;
+    background: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-family: var(--font-main);
+    font-size: 0.95rem;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background: var(--accent);
+    border-color: var(--border-dark);
+    color: var(--text-secondary);
+}
+
+.admin-btn {
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.page-header h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+.page-header h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--border-color);
+    border-radius: 3px;
+}
+
+.page-subtitle {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* ===== MODAL ===== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(210, 190, 170, 0.3);
+    backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: var(--bg-primary);
+    max-width: 400px;
+    width: 90%;
+    border-radius: 60px 20px 60px 20px;
+    border: 3px solid var(--border-color);
+    padding: 2.5rem;
+    text-align: center;
+    box-shadow: 0 20px 40px var(--shadow);
+}
+
+.modal-flourish {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.modal h2 {
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+}
+
+.modal-input {
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+    border: 2px solid var(--border-color);
+    border-radius: 40px;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    background: white;
+}
+
+.modal-input:focus {
+    outline: none;
+    border-color: var(--border-dark);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.modal-btn {
+    padding: 0.6rem 2rem;
+    border: 2px solid var(--border-color);
+    border-radius: 40px;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: var(--font-main);
+}
+
+.modal-btn:hover {
+    background: var(--accent);
+    border-color: var(--border-dark);
+}
+
+.modal-error {
+    color: #b15a5a;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+/* ===== TOAST NOTIFICATIONS ===== */
+.toast-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.toast {
+    background: var(--bg-primary);
+    border: 2px solid var(--border-color);
+    border-radius: 40px 10px 40px 10px;
+    padding: 1rem 2rem;
+    margin-top: 0.5rem;
+    color: var(--text-primary);
+    box-shadow: 0 5px 15px var(--shadow);
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ===== LOADING SCREEN ===== */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    transition: opacity 0.5s;
+}
+
+.loading-screen.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading-content {
+    text-align: center;
+    animation: float 2s infinite ease-in-out;
+}
+
+.loading-flourish {
+    font-size: 4rem;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 1rem;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .nav-container {
+        padding: 0 1rem;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .page-header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .container {
+        padding: 1rem;
+    }
+}
