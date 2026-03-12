@@ -6,8 +6,11 @@
 const CONFIG = {
     SHEETDB_URL: 'https://sheetdb.io/api/v1/tv79omjmeb41g',
     ADMIN_PASSWORD: 'cute123',
-    SESSION_TIMEOUT: 30 * 60 * 1000
-};
+    SESSION_TIMEOUT: 30 * 60 * 1000,
+    STORAGE_KEYS: {
+        AUTH: 'hamisa_auth',
+        THEME: 'hamisa_theme'
+    }
 };
 
 // Toast notifications
