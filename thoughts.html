@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hamisa · community thoughts</title>
+    
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&family=Comfortaa:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/thoughts.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">hamisa</a>
+            <div class="nav-links">
+                <a href="reviews.html" class="nav-link">reviews</a>
+                <a href="thoughts.html" class="nav-link active">thoughts</a>
+                <button class="nav-link admin-btn" id="openAdminBtn">⚙️</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="thoughts-main">
+        <div class="container">
+            <header class="page-header">
+                <h1>community thoughts</h1>
+                <p class="page-subtitle">where conversations bloom</p>
+            </header>
+
+            <!-- Stats Banner -->
+            <div class="stats-banner">
+                <div class="stat-group">
+                    <span class="stat-number" id="totalComments">0</span>
+                    <span class="stat-label">thoughts</span>
+                </div>
+                <span class="stat-divider">✦</span>
+                <div class="stat-group">
+                    <span class="stat-number" id="todayComments">0</span>
+                    <span class="stat-label">today</span>
+                </div>
+                <span class="stat-divider">✦</span>
+                <div class="stat-group">
+                    <span class="stat-number" id="activeUsers">0</span>
+                    <span class="stat-label">here now</span>
+                </div>
+            </div>
+
+            <!-- Two Column Layout -->
+            <div class="thoughts-layout">
+                <!-- LEFT: Post a Thought -->
+                <div class="post-column">
+                    <h2>drop a thought ✨</h2>
+                    <p class="column-subtitle">like a note in a bottle</p>
+                    
+                    <form id="commentForm" class="thought-form">
+                        <div class="form-row">
+                            <input type="text" id="name" class="form-input" placeholder="your name (or don't!)">
+                            <label class="anonymous-check">
+                                <input type="checkbox" id="anonymousCheck" checked>
+                                <span>🕵️‍♀️ stay sneaky</span>
+                            </label>
+                        </div>
+                        
+                        <textarea id="comment" class="form-textarea" placeholder="type something cute or deep or both..." required></textarea>
+                        
+                        <div class="captcha-box">
+                            <span>🧸 what's 2 + 2?</span>
+                            <input type="number" id="captcha" class="captcha-input" required>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">✨ send it into the universe</button>
+                    </form>
+                    
+                    <div class="cozy-note">
+                        <p>🧦 be kind · be cozy · be you 🧦</p>
+                    </div>
+                </div>
+
+                <!-- RIGHT: Thoughts Feed -->
+                <div class="feed-column">
+                    <div class="feed-header">
+                        <h3>recent thinkies 💭</h3>
+                        <select id="sortComments" class="sort-select">
+                            <option value="newest">newest first ✨</option>
+                            <option value="popular">most loved ❤️</option>
+                            <option value="oldest">oldies 📦</option>
+                        </select>
+                    </div>
+                    
+                    <div class="thoughts-feed" id="commentsContainer">
+                        <!-- Comments loaded by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/thoughts.js"></script>
+</body>
+</html>
