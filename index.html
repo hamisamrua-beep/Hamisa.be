@@ -3,13 +3,780 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hamisa · film journals</title>
+    <title>hamisa · film reviews</title>
     
     <!-- Fonts -->
-       <link rel="stylesheet" href="css1/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ===== YOUR EXACT ORIGINAL CSS ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f8f1e0;
+            font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+            color: #5e4b3c;
+            line-height: 1.5;
+            min-height: 100vh;
+            background-image: radial-gradient(circle at 20% 30%, #f3e5d0 2px, transparent 2px),
+                              radial-gradient(circle at 85% 70%, #ecdcc0 1px, transparent 2px);
+            background-size: 70px 70px, 120px 120px;
+            padding: 1rem;
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background-color: #dac9b5;
+            color: #3f3329;
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #landing-section {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 100;
+            background-color: #f8f1e0;
+            transform: translateY(0);
+        }
+
+        #landing-section.hidden {
+            transform: translateY(-100%);
+        }
+
+        #reviews-section {
+            min-height: 100vh;
+            padding: 2rem 0;
+            opacity: 0;
+            transition: opacity 0.5s ease 0.3s;
+        }
+
+        #reviews-section.visible {
+            opacity: 1;
+        }
+
+        /* ===== LANDING PAGE ===== */
+        .landing-content {
+            width: 100%;
+            max-width: 880px;
+            margin: 0 auto;
+            animation: floatIn 1.2s ease-out;
+        }
+
+        @keyframes floatIn {
+            0% {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .canvas {
+            width: 100%;
+            background: #f3e9d2;
+            border-radius: 3rem 1.5rem 3rem 1.5rem;
+            box-shadow: 0 20px 35px -8px rgba(120, 90, 60, 0.2),
+                        inset 0 1px 4px rgba(255, 245, 225, 0.8);
+            padding: 3rem 2.5rem;
+            border: 2px solid #e2d2bb;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .canvas:hover {
+            transform: scale(1.02);
+            box-shadow: 0 30px 45px -12px rgba(120, 90, 60, 0.3);
+        }
+
+        .canvas::after {
+            content: "click to enter";
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            font-size: 0.9rem;
+            color: #cbb99f;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            font-style: italic;
+        }
+
+        .canvas:hover::after {
+            opacity: 0.7;
+        }
+
+        .hamisa {
+            display: block;
+            font-size: clamp(4rem, 18vw, 9rem);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            color: #7d5f4b;
+            text-align: center;
+            text-transform: lowercase;
+            font-family: 'Playfair Display', 'Times New Roman', Georgia, serif;
+            text-shadow: 2px 2px 1px rgba(240, 225, 200, 0.8),
+                         4px 4px 3px rgba(160, 130, 100, 0.1);
+            line-height: 1.1;
+            animation: pulse 3s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                text-shadow: 2px 2px 1px rgba(240, 225, 200, 0.8),
+                             4px 4px 3px rgba(160, 130, 100, 0.1);
+            }
+            50% {
+                text-shadow: 4px 4px 2px rgba(240, 225, 200, 0.9),
+                             6px 6px 5px rgba(160, 130, 100, 0.15);
+            }
+        }
+
+        .hamisa::before,
+        .hamisa::after {
+            content: "☾";
+            display: inline-block;
+            font-size: 1.8rem;
+            color: #cbb99f;
+            margin: 0 0.9rem;
+            vertical-align: middle;
+            opacity: 0.45;
+            filter: drop-shadow(0 1px 0 #fff8e5);
+            animation: rotateMoon 8s infinite linear;
+        }
+
+        .hamisa::before {
+            animation: rotateMoon 8s infinite reverse;
+        }
+
+        @keyframes rotateMoon {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .landing-footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #cbb99f;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.5s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 0.7;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== REVIEW SECTION ===== */
+        .reviews-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1rem 0;
+            border-bottom: 2px solid #e2d2bb;
+        }
+
+        .review-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #7d5f4b;
+            position: relative;
+            display: inline-block;
+        }
+
+        .review-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #dac9b5;
+            border-radius: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        /* ===== CLOUD BUTTONS ===== */
+        .cloud-btn {
+            background: #f3e9d2;
+            border: 2px solid #e2d2bb;
+            border-radius: 60px;
+            padding: 0.7rem 2rem;
+            font-size: 1rem;
+            color: #7d5f4b;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: 'Playfair Display', serif;
+            box-shadow: 0 8px 0 #dac9b5, 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .cloud-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 13px 0 #dac9b5, 0 8px 20px rgba(160, 130, 100, 0.3);
+            background: #f2e6d2;
+            border-color: #d6c0a8;
+        }
+
+        .cloud-btn:active {
+            transform: translateY(5px);
+            box-shadow: 0 3px 0 #dac9b5, 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .cloud-btn.active {
+            background: #e7dac6;
+            border-color: #bfaa97;
+            box-shadow: 0 5px 0 #bfaa97, 0 5px 15px rgba(160, 130, 100, 0.2);
+            transform: translateY(3px);
+        }
+
+        /* ===== SECRET SPOT - HIDDEN ADMIN ===== */
+        .secret-spot {
+            position: relative;
+            margin-left: 0.5rem;
+        }
+
+        .secret-trigger {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #f3e9d2;
+            border: 2px solid #e2d2bb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #cbb99f;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 0 #dac9b5;
+        }
+
+        .secret-trigger:hover {
+            transform: translateY(-3px) rotate(5deg);
+            box-shadow: 0 7px 0 #dac9b5, 0 0 15px #f3d9c0;
+            color: #9e806a;
+            border-color: #d6c0a8;
+        }
+
+        .secret-trigger:active {
+            transform: translateY(4px);
+            box-shadow: 0 0px 0 #dac9b5;
+        }
+
+        /* Secret tooltip - appears on hover */
+        .secret-tooltip {
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #faf3e5;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            color: #9b846d;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            pointer-events: none;
+            border: 1px solid #e2d2bb;
+            box-shadow: 0 4px 0 #dac9b5;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+
+        .secret-trigger:hover .secret-tooltip {
+            opacity: 1;
+            bottom: -40px;
+        }
+
+        /* Sparkle animation */
+        .secret-trigger::after {
+            content: '✨';
+            position: absolute;
+            font-size: 0.8rem;
+            top: -5px;
+            right: -5px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .secret-trigger:hover::after {
+            opacity: 1;
+            animation: sparkle 1s infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        /* ===== SEARCH & FILTER ===== */
+        .search-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .search-container input,
+        .search-container select {
+            padding: 0.8rem 1.2rem;
+            background: #f3e9d2;
+            border: 2px solid #e2d2bb;
+            border-radius: 40px;
+            font-family: 'Inter', sans-serif;
+            color: #5e4b3c;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .search-container input:focus,
+        .search-container select:focus {
+            outline: none;
+            border-color: #bfaa97;
+            background: #fef9f0;
+        }
+
+        .search-container input::placeholder {
+            color: #cbb99f;
+            font-style: italic;
+        }
+
+        .search-container select {
+            cursor: pointer;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235e4b3c' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            appearance: none;
+            padding-right: 2.5rem;
+        }
+
+        /* ===== REVIEW GRID ===== */
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin: 2rem 0;
+        }
+
+        .review-card {
+            background: #f4ead8;
+            border: 1px solid #e5d6c2;
+            border-radius: 2rem 0.8rem 2rem 0.8rem;
+            padding: 1.8rem 1.2rem 1.4rem 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px -12px rgba(90, 70, 50, 0.2);
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            position: relative;
+            animation: cardAppear 0.5s ease-out;
+            animation-fill-mode: both;
+        }
+
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .review-card:hover {
+            background: #f2e6d2;
+            border-color: #d6c0a8;
+            box-shadow: 0 18px 25px -16px #ad927b;
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        .review-card::after {
+            content: "↗";
+            position: absolute;
+            bottom: 8px;
+            right: 12px;
+            font-size: 1rem;
+            color: #cbb297;
+            opacity: 0.4;
+            transition: opacity 0.1s;
+        }
+
+        .review-card:hover::after {
+            opacity: 0.9;
+            color: #9e806a;
+        }
+
+        .card-index {
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: #b8a38d;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.4rem;
+            border-bottom: 1px dotted #dfcebb;
+            padding-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .film-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #624f3e;
+            line-height: 1.2;
+            margin-bottom: 0.25rem;
+        }
+
+        .film-director {
+            font-size: 0.8rem;
+            color: #937f6b;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+            font-weight: 300;
+        }
+
+        .film-synopsis {
+            font-size: 0.85rem;
+            color: #5b4b3d;
+            margin: 0.6rem 0 0.8rem;
+            line-height: 1.5;
+            border-left: 2px solid #dac2ae;
+            padding-left: 0.7rem;
+        }
+
+        .film-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: auto;
+            padding-top: 0.6rem;
+            border-top: 1px solid #e4d5c2;
+            font-size: 0.7rem;
+            color: #7a6655;
+        }
+
+        .badge {
+            background: #e3d3c0;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            color: #4e3f33;
+        }
+
+        .counter-note {
+            text-align: center;
+            margin: 2rem 0;
+            color: #a48f7a;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .counter-note span {
+            background: #ecdfce;
+            padding: 0.3rem 2rem;
+            border-radius: 40px;
+            display: inline-block;
+        }
+
+        .signature {
+            margin-top: 3rem;
+            text-align: right;
+            border-top: 2px solid #e2d2bb;
+            padding-top: 1rem;
+            color: #ac9a87;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(120, 90, 70, 0.2);
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: #faf3e5;
+            max-width: 500px;
+            width: 90%;
+            border-radius: 3rem 1rem 3rem 1rem;
+            border: 3px solid #e2cfbb;
+            padding: 2.5rem;
+            position: relative;
+            box-shadow: 0 30px 40px -20px #3f3329;
+        }
+
+        .modal-flourish {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: #cbb99f;
+            background: #faf3e5;
+            padding: 0 1rem;
+        }
+
+        .login-modal {
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .login-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #7d5f4b;
+            margin-bottom: 1.5rem;
+        }
+
+        .login-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .login-error {
+            color: #b15a5a;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            min-height: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            background: #fef9f0;
+            border: 2px solid #e2cfbb;
+            border-radius: 1rem;
+            font-family: 'Inter', sans-serif;
+            color: #5e4b3c;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #bfaa97;
+        }
+
+        .btn {
+            background: #e7dac6;
+            border: 1px solid #bfaa97;
+            padding: 0.6rem 1.5rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            color: #5e4b3c;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn:hover {
+            background: #dac9b5;
+            transform: scale(1.02);
+        }
+
+        /* ===== ADMIN SECTION ===== */
+        #admin-section {
+            display: none;
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+
+        #admin-section.active {
+            display: block;
+        }
+
+        .stats-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: #f4ead8;
+            border: 1px solid #e5d6c2;
+            border-radius: 2rem 0.8rem 2rem 0.8rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            color: #7d5f4b;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .stat-label {
+            color: #9b846d;
+            font-size: 0.9rem;
+        }
+
+        .admin-container {
+            background: #f3e9d2;
+            border: 2px solid #e2d2bb;
+            border-radius: 3rem 1.5rem 3rem 1.5rem;
+            padding: 2rem;
+        }
+
+        .shows-list {
+            margin-top: 2rem;
+        }
+
+        .show-item {
+            background: #f4ead8;
+            border: 1px solid #e5d6c2;
+            border-radius: 2rem 0.8rem 2rem 0.8rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .show-actions button {
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            border: 1px solid #bfaa97;
+            cursor: pointer;
+            background: #e7dac6;
+            color: #5e4b3c;
+        }
+
+        /* ===== TOAST NOTIFICATIONS ===== */
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1001;
+        }
+
+        .toast {
+            background: #f3e9d2;
+            border: 2px solid #e2cfbb;
+            border-radius: 2rem 0.5rem 2rem 0.5rem;
+            padding: 1rem 2rem;
+            color: #5e4b3c;
+            margin-top: 0.5rem;
+            animation: slideInLeft 0.3s ease;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* ===== BACK TO TOP ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #e7dac6;
+            border: 2px solid #bfaa97;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s;
+            font-size: 1.5rem;
+            color: #5e4b3c;
+        }
+
+        .back-to-top.visible {
+            opacity: 0.8;
+        }
+
+        .back-to-top:hover {
+            opacity: 1;
+            transform: scale(1.1) translateY(-5px);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 600px) {
+            .review-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .search-container {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Landing Section (Animated) -->
@@ -30,7 +797,15 @@
             <div class="review-header">
                 <h1>film reviews</h1>
                 <div class="nav-links">
-                    <button class="admin-login-btn" id="open-admin-btn">admin ✦</button>
+                    <a href="thoughts.html" class="cloud-btn">thoughts</a>
+                    
+                    <!-- SECRET SPOT - Hidden admin access -->
+                    <div class="secret-spot">
+                        <div class="secret-trigger" id="openAdminBtn">
+                            ✦
+                            <span class="secret-tooltip">secret spot ✨</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -69,13 +844,13 @@
     <div id="loginModal" class="modal-overlay">
         <div class="modal-content login-modal">
             <span class="modal-flourish">☾</span>
-            <h2 class="login-title">admin</h2>
+            <h2 class="login-title">shh! secret spot</h2>
             <div class="form-group">
-                <input type="password" id="passwordInput" placeholder="✦ password ✦">
+                <input type="password" id="passwordInput" placeholder="✦ whisper password ✦">
             </div>
             <div class="login-actions">
-                <button class="btn" id="loginSubmitBtn">enter</button>
-                <button class="btn" id="loginCancelBtn">cancel</button>
+                <button class="btn" id="loginSubmitBtn">peek inside</button>
+                <button class="btn" id="loginCancelBtn">nevermind</button>
             </div>
             <div id="loginError" class="login-error"></div>
         </div>
@@ -87,7 +862,7 @@
             <div class="review-header">
                 <h1>admin panel</h1>
                 <div class="nav-links">
-                    <button class="admin-login-btn" id="back-to-reviews-btn">← back to reviews</button>
+                    <button class="cloud-btn" id="back-to-reviews-btn">← back to reviews</button>
                 </div>
             </div>
 
@@ -156,6 +931,132 @@
     <!-- Back to Top Button -->
     <div class="back-to-top" id="backToTop">↑</div>
 
-    <script src="index.js"></script>
-</body>
-</html>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+    <script>
+        // ===============================================================
+        // ADMIN LOGIN FUNCTIONALITY
+        // ===============================================================
+        const ADMIN_PASSWORD = 'cute123'; // Change this to your password
+
+        // DOM Elements
+        const landingSection = document.getElementById('landing-section');
+        const reviewsSection = document.getElementById('reviews-section');
+        const landingCanvas = document.getElementById('landingCanvas');
+        const openAdminBtn = document.getElementById('openAdminBtn');
+        const loginModal = document.getElementById('loginModal');
+        const loginSubmitBtn = document.getElementById('loginSubmitBtn');
+        const loginCancelBtn = document.getElementById('loginCancelBtn');
+        const passwordInput = document.getElementById('passwordInput');
+        const loginError = document.getElementById('loginError');
+        const adminSection = document.getElementById('admin-section');
+        const backToReviewsBtn = document.getElementById('back-to-reviews-btn');
+
+        // Auto-hide landing after 3 seconds
+        setTimeout(() => {
+            if (!landingSection.classList.contains('hidden')) {
+                transitionToReviews();
+            }
+        }, 3000);
+
+        // Click on landing to transition
+        landingCanvas.addEventListener('click', transitionToReviews);
+
+        function transitionToReviews() {
+            landingSection.classList.add('hidden');
+            setTimeout(() => {
+                landingSection.style.display = 'none';
+                reviewsSection.classList.add('visible');
+                renderReviews();
+            }, 800);
+        }
+
+        // Open admin login modal
+        openAdminBtn.addEventListener('click', () => {
+            loginModal.style.display = 'flex';
+            passwordInput.value = '';
+            loginError.textContent = '';
+        });
+
+        // Login submit
+        loginSubmitBtn.addEventListener('click', () => {
+            if (passwordInput.value === ADMIN_PASSWORD) {
+                loginModal.style.display = 'none';
+                reviewsSection.classList.remove('visible');
+                adminSection.classList.add('active');
+                renderAdminList();
+                updateStats();
+                showToast('✨ welcome to the secret spot!');
+            } else {
+                loginError.textContent = 'nope! try again ✨';
+                showToast('🔐 wrong password', 'error');
+            }
+        });
+
+        // Login cancel
+        loginCancelBtn.addEventListener('click', () => {
+            loginModal.style.display = 'none';
+            loginError.textContent = '';
+        });
+
+        // Close modal on outside click
+        loginModal.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                loginModal.style.display = 'none';
+                loginError.textContent = '';
+            }
+        });
+
+        // Back to reviews
+        backToReviewsBtn.addEventListener('click', () => {
+            adminSection.classList.remove('active');
+            reviewsSection.classList.add('visible');
+        });
+
+        // ===============================================================
+        // REVIEWS PAGE FUNCTIONS
+        // ===============================================================
+        const STORAGE_KEY = 'hamisa_shows';
+
+        // Default sample data
+        const defaultShows = [
+            {
+                title: "Sore",
+                director: "Yandy Laurens",
+                year: "2025",
+                reviewText: "A beautiful meditation on time and connection. The scene where she teaches him to cook Croatian stew while explaining future habits brought tears to my eyes."
+            },
+            {
+                title: "Sanctuary",
+                director: "Zach Wigon",
+                year: "2024",
+                reviewText: "Tense, claustrophobic, and brilliantly acted. It's a two-hander that never lets you breathe."
+            },
+            {
+                title: "Drive My Car",
+                director: "Ryusuke Hamaguchi",
+                year: "2021",
+                reviewText: "Three hours long but feels like a single, perfect breath."
+            }
+        ];
+
+        if (!localStorage.getItem(STORAGE_KEY)) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultShows));
+        }
+
+        function getShows() {
+            return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        }
+
+        function saveShows(shows) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(shows));
+            renderReviews();
+            if (adminSection.classList.contains('active')) {
+                renderAdminList();
+                updateStats();
+            }
+        }
+
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type === 'error' ? '
